@@ -1,33 +1,35 @@
 package com.accenture.lkm.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import javax.persistence.*;
 import com.accenture.lkm.businessbean.DoughnutBean;
+import com.accenture.lkm.businessbean.LoginBean;
+import com.accenture.lkm.entity.LoginEntity;
+import com.accenture.lkm.utility.JPAUtility;
 
 public class DoughnutDaoImpl implements DoughnutDao {
+
 	@Override
-	public DoughnutBean addDoughnut(DoughnutBean bean) {
+	public boolean validateUser(LoginBean bean) {
+		boolean flag = false;
+		EntityManagerFactory entityManagerFactory = JPAUtility.getEntityManagerFactory();
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		Query query = entityManager.createQuery("select e from LoginEntity e where e.userName=?1 and e.password=:pw");
+		query.setParameter(1, bean.getUserName());
+		query.setParameter("pw", bean.getPassword());
+		try {
+		LoginEntity entity = (LoginEntity)query.getSingleResult();
+		if(entity!=null)
+			flag = true;
+		}
+		catch(NoResultException exception) {
+			flag = false;
+		}
+		return flag;
+	}
+
+	@Override
+	public Double placeOrder(DoughnutBean bean) {
 		return null;
 	}
-	@Override
-	public DoughnutBean updateDoughnut(DoughnutBean bean) {
-		return null;
-	}
-	@Override
-	public boolean deleteDoughnut(Integer donutId) {
-		return false;
-	}
-	@Override
-	public List<DoughnutBean> getAllDoughnuts() {
-		return null;
-	}
-	@Override
-	public DoughnutBean getDoughnut(Integer donutId) {
-		return null;
-	}
-	@Override
-	public DoughnutBean getDoughnut(String donutName) {
-		return null;
-	}
+	
 }

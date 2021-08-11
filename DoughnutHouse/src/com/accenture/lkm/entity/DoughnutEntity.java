@@ -1,9 +1,9 @@
-package com.accenture.lkm.businessbean;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class DoughnutBean {
+package com.accenture.lkm.entity;
+import javax.persistence.*;
+@Entity
+public class DoughnutEntity {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer donutId;
 	private String donutName;
 	private String donutSize;
@@ -47,6 +47,4 @@ public class DoughnutBean {
 	public void setDonutToppings(String donutToppings) {
 		this.donutToppings = donutToppings;
 	}
-	
-	
 }

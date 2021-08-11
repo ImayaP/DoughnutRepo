@@ -4,30 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.accenture.lkm.businessbean.DoughnutBean;
-
+import com.accenture.lkm.businessbean.LoginBean;
+import com.accenture.lkm.dao.DoughnutDao;
+import com.accenture.lkm.utility.*;
 public class DoughnutServiceImpl implements DoughnutService {
+
 	@Override
-	public DoughnutBean addDoughnut(DoughnutBean bean) {
+	public boolean validateUser(LoginBean bean) {
+		DoughnutDao doughnutDao = DoughnutFactory.getDoughtnutDao();
+		if(bean!=null)
+			return doughnutDao.validateUser(bean);
+		else
+			return false;
+	}
+
+	@Override
+	public Double placeOrder(DoughnutBean bean) {
+		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public DoughnutBean updateDoughnut(DoughnutBean bean) {
-		return null;
-	}
-	@Override
-	public boolean deleteDoughnut(Integer donutId) {
-		return false;
-	}
-	@Override
-	public List<DoughnutBean> getAllDoughnuts() {
-		return null;
-	}
-	@Override
-	public DoughnutBean getDoughnut(Integer donutId) {
-		return null;
-	}
-	@Override
-	public DoughnutBean getDoughnut(String donutName) {
-		return null;
-	}
+	
 }

@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Welcome to Donut House!!</h1>
-<a href="viewItems.jsp">Doughnuts</a><br/>
+<h1>Home Page</h1>
 </body>
 </html>
